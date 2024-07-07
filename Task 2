@@ -1,0 +1,32 @@
+import pandas as pd
+import numpy as np
+
+# Load the CSV file into a Pandas DataFrame
+df = pd.read_csv('data111.csv')
+
+# Print the first few rows of the DataFrames
+print(df.head())
+
+# Filter data based on conditions
+# For example, let's filter rows where Age is greater than 30
+filtered_df = df[df['Age'] > 30]
+print(filtered_df)
+
+# Handle missing values
+# Let's replace missing values in the Salary column with the mean Salary
+df['Salary'].fillna(df['Salary'].mean(), inplace=True)
+
+# Calculate summary statistics
+# Let's calculate the mean, median, and standard deviation of the Salary column
+print(df['Salary'].describe())
+
+# Let's calculate the count of missing values in each column
+print(df.isnull().sum())
+
+# Let's group the data by Country and calculate the mean Salary for each country
+grouped_df = df.groupby('Country')['Salary'].mean()
+print(grouped_df)
+
+# Let's sort the data by Salary in descending order
+sorted_df = df.sort_values('Salary', ascending=False)
+print(sorted_df.head())
